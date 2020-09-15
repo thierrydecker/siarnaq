@@ -46,3 +46,93 @@ def test_static_methods():
     assert round(Degree.conv_fa_to_ce(temp=32), 2) == 0.00
     assert round(Degree.conv_fa_to_ce(temp=-100), 2) == -73.33
     assert round(Degree.conv_fa_to_ce(temp=100), 2) == 37.78
+
+    assert round(Degree.conv_fa_to_ke(temp=32), 2) == 273.15
+    assert round(Degree.conv_fa_to_ke(temp=-100), 2) == 199.82
+    assert round(Degree.conv_fa_to_ke(temp=100), 2) == 310.93
+
+    assert round(Degree.conv_ke_to_ce(temp=0), 2) == -273.15
+    assert round(Degree.conv_ke_to_ce(temp=273.15), 2) == 0.00
+    assert round(Degree.conv_ke_to_ce(temp=100), 2) == -173.15
+
+    assert round(Degree.conv_ke_to_fa(temp=273.15), 2) == 32.00
+    assert round(Degree.conv_ke_to_fa(temp=0), 2) == -459.67
+    assert round(Degree.conv_ke_to_fa(temp=100), 2) == -279.67
+
+
+def test_propertties_getters():
+    assert Degree().scales == {'ce', 'fa', 'ke'}
+
+    r = Degree(scale='ce', temp=0)
+    assert r.scale == 'ce'
+    assert round(r.temp, 2) == 0.00
+    assert round(r.celcius, 2) == 0.00
+    assert round(r.fahrnheit, 2) == 32.00
+    assert round(r.kelvin, 2) == 273.15
+
+    r = Degree(scale='fa', temp=0)
+    assert r.scale == 'fa'
+    assert round(r.temp, 2) == 0.00
+    assert round(r.celcius, 2) == -17.78
+    assert round(r.fahrnheit, 2) == 0
+    assert round(r.kelvin, 2) == 255.37
+
+    r = Degree(scale='ke', temp=0)
+    assert r.scale == 'ke'
+    assert round(r.temp, 2) == 0.00
+    assert round(r.celcius, 2) == -273.15
+    assert round(r.fahrnheit, 2) == -459.67
+    assert round(r.kelvin, 2) == 0
+
+
+def test_propertties_setters():
+    r = Degree(scale='ce', temp=100)
+
+    r.scale = 'ce'
+    r.temp = 0
+    assert round(r.temp, 2) == 0.00
+    assert round(r.celcius, 2) == 0.00
+    assert round(r.fahrnheit, 2) == 32.00
+    assert round(r.kelvin, 2) == 273.15
+
+    r.scale = 'fa'
+    assert round(r.temp, 2) == 32.00
+    assert round(r.celcius, 2) == 0.00
+    assert round(r.fahrnheit, 2) == 32.00
+    assert round(r.kelvin, 2) == 273.15
+
+    r.scale = 'ke'
+    assert round(r.temp, 2) == 273.15
+    assert round(r.celcius, 2) == 0.00
+    assert round(r.fahrnheit, 2) == 32.00
+    assert round(r.kelvin, 2) == 273.15
+
+    with pytest.raises(Exception):
+        r = Degree()
+        r.scale = 'Dummy'
+
+
+def test_str():
+    r = Degree('ce')
+    assert str(r) == '0.0 °C'
+
+    r.scale = 'fa'
+    r.temp = 0
+    assert str(r) == '0.0 °F'
+
+    r.scale = 'ke'
+    r.temp = 0
+    assert str(r) == '0.0 K'
+
+
+def test_repr():
+    r = Degree('ce')
+    assert repr(r) == 'Degree(\'ce\', 0.0)'
+
+    r.scale = 'fa'
+    r.temp = 0
+    assert repr(r) == 'Degree(\'fa\', 0.0)'
+
+    r.scale = 'ke'
+    r.temp = 0
+    assert repr(r) == 'Degree(\'ke\', 0.0)'
