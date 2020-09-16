@@ -1,2 +1,7 @@
 /venv/
 /.idea/
+/tests/.pytest_cache/
+/.pytest_cache/
+/coverage/
+/.coverage
+/htmlcov/
