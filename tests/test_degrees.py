@@ -86,8 +86,23 @@ def test_propertties_getters():
 
 
 def test_propertties_setters():
-    r = Degree(scale='ce', temp=100)
+    r = Degree(scale='ce', temp=0)
+    r.scale = 'fa'
+    r.temp = 0
+    assert round(r.temp, 2) == 0.00
+    assert round(r.celcius, 2) == -17.78
+    assert round(r.fahrnheit, 2) == 0.00
+    assert round(r.kelvin, 2) == 255.37
 
+    r = Degree(scale='ce', temp=0)
+    r.scale = 'ke'
+    r.temp = 0
+    assert round(r.temp, 2) == 0.00
+    assert round(r.celcius, 2) == -273.15
+    assert round(r.fahrnheit, 2) == -459.67
+    assert round(r.kelvin, 2) == 0.00
+
+    r = Degree(scale='fa', temp=0)
     r.scale = 'ce'
     r.temp = 0
     assert round(r.temp, 2) == 0.00
@@ -95,21 +110,71 @@ def test_propertties_setters():
     assert round(r.fahrnheit, 2) == 32.00
     assert round(r.kelvin, 2) == 273.15
 
-    r.scale = 'fa'
-    assert round(r.temp, 2) == 32.00
+    r = Degree(scale='fa', temp=0)
+    r.scale = 'ke'
+    r.temp = 0
+    assert round(r.temp, 2) == 0.00
+    assert round(r.celcius, 2) == -273.15
+    assert round(r.fahrnheit, 2) == -459.67
+    assert round(r.kelvin, 2) == 0.00
+
+    r = Degree(scale='ke', temp=0)
+    r.scale = 'ce'
+    r.temp = 0
+    assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == 0.00
     assert round(r.fahrnheit, 2) == 32.00
     assert round(r.kelvin, 2) == 273.15
 
-    r.scale = 'ke'
-    assert round(r.temp, 2) == 273.15
-    assert round(r.celcius, 2) == 0.00
-    assert round(r.fahrnheit, 2) == 32.00
-    assert round(r.kelvin, 2) == 273.15
+    r = Degree(scale='ke', temp=0)
+    r.scale = 'fa'
+    r.temp = 0
+    assert round(r.temp, 2) == 0.00
+    assert round(r.celcius, 2) == -17.78
+    assert round(r.fahrnheit, 2) == 0.00
+    assert round(r.kelvin, 2) == 255.37
 
     with pytest.raises(Exception):
         r = Degree()
         r.scale = 'Dummy'
+
+
+def test_add():
+    r1 = Degree(scale='ce', temp=1.0)
+    r2 = Degree(scale='ce', temp=2.0)
+    r = r1 + r2
+    assert r.scale == 'ce'
+    assert r.temp == 3.00
+
+    r1 = Degree(scale='ce', temp=1.0)
+    r2 = Degree(scale='ce', temp=2.0)
+    r = r1 + 2.00
+    assert r.scale == 'ce'
+    assert r.temp == 3.00
+
+    r1 = Degree(scale='ce', temp=1.0)
+    r2 = Degree(scale='ce', temp=1.0)
+    r = 2.00 + r1
+    assert r.scale == 'ce'
+    assert r.temp == 3.00
+
+    r1 = Degree(scale='ce', temp=1.0)
+    r2 = Degree(scale='ce', temp=1.0)
+    r1 += r2
+    assert r1.scale == 'ce'
+    assert r1.temp == 2.00
+
+
+def test_sub():
+    assert True
+
+
+def test_mul():
+    assert True
+
+
+def test_div():
+    assert True
 
 
 def test_str():

@@ -101,24 +101,21 @@ class Degree:
         """
         if scale not in self._scales:
             raise NameError(scale)
-        elif scale == self._scale:
-            pass
-        elif self._scale == 'ce':
-            if scale == 'fa':
+
+        if scale != self._scale:
+            if self._scale == 'ce' and scale == 'fa':
                 self._temp = self.conv_ce_to_fa(temp=self._temp)
-            elif scale == 'ke':
+            if self._scale == 'ce' and scale == 'ke':
                 self._temp = self.conv_ce_to_ke(temp=self._temp)
-        elif self._scale == 'fa':
-            if scale == 'ce':
+            if self._scale == 'fa' and scale == 'ce':
                 self._temp = self.conv_fa_to_ce(temp=self._temp)
-            elif scale == 'ke':
+            if self._scale == 'fa' and scale == 'ke':
                 self._temp = self.conv_fa_to_ke(temp=self._temp)
-        elif self._scale == 'ke':
-            if scale == 'ce':
+            if self._scale == 'ke' and scale == 'ce':
                 self._temp = self.conv_ke_to_ce(temp=self._temp)
-            elif scale == 'fa':
+            if self._scale == 'ke' and scale == 'fa':
                 self._temp = self.conv_ke_to_fa(temp=self._temp)
-        self._scale = scale
+            self._scale = scale
 
     @property
     def temp(self):
