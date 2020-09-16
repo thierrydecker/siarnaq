@@ -13,3 +13,13 @@
 ## The project
 
 Siarnaq aims to become a toolbox dedicated to units conversions.
+
+## Available conversions
+
+### Degrees
+
+The Degree class currently supports the following scales :
+
+- Celcius
+- Fahrenheit
+- Kelvin
