@@ -5,3 +5,6 @@
 /coverage/
 /.coverage
 /htmlcov/
+/siarnaq.egg-info/
+/build/
+/dist/
