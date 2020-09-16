@@ -23,3 +23,21 @@ The Degree class currently supports the following scales :
 - Celcius
 - Fahrenheit
 - Kelvin
+
+## Installation
+
+The library is available on Pypi and can be installed via: 
+
+```pip install siarnaq```
+
+## Testing
+
+The test are written with pytest and can be run as follow:
+
+```pytest tests/ -v```
+
+or
+
+```python -m pytest tests/ -v```
+
+We try to maintain a high level of testing coverage...
