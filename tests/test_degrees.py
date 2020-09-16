@@ -30,7 +30,9 @@ def test_instanciations():
 
     with pytest.raises(Exception):
         assert Degree(scale='Dummy')
+    with pytest.raises(Exception):
         assert Degree(temp='Dummy')
+    with pytest.raises(Exception):
         assert Degree(scale='Dummy', temp='Dummy')
 
 
@@ -146,16 +148,14 @@ def test_add():
     assert r.scale == 'ce'
     assert r.temp == 3.00
 
-    r1 = Degree(scale='ce', temp=1.0)
-    r2 = Degree(scale='ce', temp=2.0)
+    r1 = Degree(scale='fa', temp=1.0)
     r = r1 + 2.00
-    assert r.scale == 'ce'
+    assert r.scale == 'fa'
     assert r.temp == 3.00
 
-    r1 = Degree(scale='ce', temp=1.0)
-    r2 = Degree(scale='ce', temp=1.0)
+    r1 = Degree(scale='ke', temp=1.0)
     r = 2.00 + r1
-    assert r.scale == 'ce'
+    assert r.scale == 'ke'
     assert r.temp == 3.00
 
     r1 = Degree(scale='ce', temp=1.0)
@@ -166,15 +166,41 @@ def test_add():
 
 
 def test_sub():
-    assert True
+    r1 = Degree(scale='ce', temp=1.0)
+    r2 = Degree(scale='ce', temp=2.0)
+    r = r1 - r2
+    assert r.scale == 'ce'
+    assert r.temp == -1.00
+
+    r1 = Degree(scale='fa', temp=1.0)
+    r = r1 - 2.00
+    assert r.scale == 'fa'
+    assert r.temp == -1.00
+
+    r1 = Degree(scale='ce', temp=1.0)
+    r2 = Degree(scale='ce', temp=1.0)
+    r1 += r2
+    assert r1.scale == 'ce'
+    assert r1.temp == 2.00
 
 
 def test_mul():
-    assert True
+    r1 = Degree(scale='ce', temp=2.0)
+    r = r1 * 10
+    assert r.scale == 'ce'
+    assert r.temp == 20.00
+
+    r1 = Degree(scale='fa', temp=2.0)
+    r = 20 * r1
+    assert r.scale == 'fa'
+    assert r.temp == 40.00
 
 
 def test_div():
-    assert True
+    r1 = Degree(scale='ce', temp=2.0)
+    r = r1 / 10
+    assert r.scale == 'ce'
+    assert r.temp == 0.20
 
 
 def test_str():
