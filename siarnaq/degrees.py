@@ -16,14 +16,27 @@ class Degree:
 
         Create Degree object:
 
-        >>> Degree()
-        Degree('ce', 0.0)
-        >>> Degree(temp=10)
-        Degree('ce', 10.0)
-        >>> Degree(scale='fa')
-        Degree('fa', 0.0)
-        >>> Degree(scale='ke', temp=5)
-        Degree('ke', 5.0)
+            >>> Degree()
+            Degree('ce', 0.0)
+            >>> Degree(temp=10)
+            Degree('ce', 10.0)
+            >>> Degree(scale='fa')
+            Degree('fa', 0.0)
+            >>> Degree(scale='ke', temp=5)
+            Degree('ke', 5.0)
+
+        Additions:
+
+            >>> Degree('fa', 10) + 1
+            Degree('fa', 11.0)
+            >>> Degree('fa', 10) + Degree('fa', 10)
+            Degree('fa', 20.0)
+
+        Substractions:
+
+        Multiplications:
+
+        Divisions:
 
     """
     _scales = {
@@ -49,7 +62,7 @@ class Degree:
     def __add__(self, other):
         if isinstance(other, Degree):
             other.scale = self._scale
-            new_degree = Degree(temp=self._temp + other.temp)
+            new_degree = Degree(scale=self.scale, temp=self._temp + other.temp)
         else:
             new_degree = Degree(
                     scale=self.scale,
