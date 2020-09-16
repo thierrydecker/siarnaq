@@ -32,7 +32,7 @@ class Degree:
             >>> r = Degree('fa', 10)
             >>> r += 1
             >>> r
-            Degree('fa', 11.0
+            Degree('fa', 11.0)
             >>> 1 + Degree('ke', 10)
             Degree('ke', 11.0)
             >>> Degree('fa', 10) + Degree('fa', 10)
