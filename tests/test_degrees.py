@@ -69,21 +69,21 @@ def test_propertties_getters():
     assert r.scale == 'ce'
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == 0.00
-    assert round(r.fahrnheit, 2) == 32.00
+    assert round(r.fahrenheit, 2) == 32.00
     assert round(r.kelvin, 2) == 273.15
 
     r = Degree(scale='fa', temp=0)
     assert r.scale == 'fa'
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == -17.78
-    assert round(r.fahrnheit, 2) == 0
+    assert round(r.fahrenheit, 2) == 0
     assert round(r.kelvin, 2) == 255.37
 
     r = Degree(scale='ke', temp=0)
     assert r.scale == 'ke'
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == -273.15
-    assert round(r.fahrnheit, 2) == -459.67
+    assert round(r.fahrenheit, 2) == -459.67
     assert round(r.kelvin, 2) == 0
 
 
@@ -93,7 +93,7 @@ def test_propertties_setters():
     r.temp = 0
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == -17.78
-    assert round(r.fahrnheit, 2) == 0.00
+    assert round(r.fahrenheit, 2) == 0.00
     assert round(r.kelvin, 2) == 255.37
 
     r = Degree(scale='ce', temp=0)
@@ -101,7 +101,7 @@ def test_propertties_setters():
     r.temp = 0
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == -273.15
-    assert round(r.fahrnheit, 2) == -459.67
+    assert round(r.fahrenheit, 2) == -459.67
     assert round(r.kelvin, 2) == 0.00
 
     r = Degree(scale='fa', temp=0)
@@ -109,7 +109,7 @@ def test_propertties_setters():
     r.temp = 0
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == 0.00
-    assert round(r.fahrnheit, 2) == 32.00
+    assert round(r.fahrenheit, 2) == 32.00
     assert round(r.kelvin, 2) == 273.15
 
     r = Degree(scale='fa', temp=0)
@@ -117,7 +117,7 @@ def test_propertties_setters():
     r.temp = 0
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == -273.15
-    assert round(r.fahrnheit, 2) == -459.67
+    assert round(r.fahrenheit, 2) == -459.67
     assert round(r.kelvin, 2) == 0.00
 
     r = Degree(scale='ke', temp=0)
@@ -125,7 +125,7 @@ def test_propertties_setters():
     r.temp = 0
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == 0.00
-    assert round(r.fahrnheit, 2) == 32.00
+    assert round(r.fahrenheit, 2) == 32.00
     assert round(r.kelvin, 2) == 273.15
 
     r = Degree(scale='ke', temp=0)
@@ -133,7 +133,7 @@ def test_propertties_setters():
     r.temp = 0
     assert round(r.temp, 2) == 0.00
     assert round(r.celcius, 2) == -17.78
-    assert round(r.fahrnheit, 2) == 0.00
+    assert round(r.fahrenheit, 2) == 0.00
     assert round(r.kelvin, 2) == 255.37
 
     with pytest.raises(Exception):
