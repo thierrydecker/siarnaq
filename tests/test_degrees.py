@@ -149,6 +149,12 @@ def test_add():
     assert r.temp == 3.00
 
     r1 = Degree(scale='fa', temp=1.0)
+    r2 = Degree(scale='fa', temp=2.0)
+    r = r1 + r2
+    assert r.scale == 'fa'
+    assert r.temp == 3.00
+
+    r1 = Degree(scale='fa', temp=1.0)
     r = r1 + 2.00
     assert r.scale == 'fa'
     assert r.temp == 3.00
