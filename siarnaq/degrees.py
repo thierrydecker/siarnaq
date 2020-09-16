@@ -12,8 +12,24 @@ Released under the MIT license
 class Degree:
     """Degree class.
 
+    Exemples:
+
+        Create Degree object:
+
+        >>> Degree()
+        Degree('ce', 0.0)
+        >>> Degree(temp=10)
+        Degree('ce', 10.0)
+        >>> Degree(scale='fa')
+        Degree('fa', 0.0)
+        >>> Degree(scale='ke', temp=5)
+        Degree('ke', 5.0)
+
     """
     _scales = {
+        #
+        # Supported scales
+        #
         'ce',  # Celcius
         'fa',  # Fahrenheit
         'ke',  # Kelvin
@@ -35,7 +51,10 @@ class Degree:
             other.scale = self._scale
             new_degree = Degree(temp=self._temp + other.temp)
         else:
-            new_degree = Degree(temp=self._temp + float(other))
+            new_degree = Degree(
+                    scale=self.scale,
+                    temp=self._temp + float(other)
+            )
         return new_degree
 
     def __radd__(self, other):
@@ -46,11 +65,11 @@ class Degree:
             other.scale = self._scale
             new_degree = Degree(temp=self._temp - other.temp)
         else:
-            new_degree = Degree(temp=self._temp - float(other))
+            new_degree = Degree(
+                    scale=self.scale,
+                    temp=self._temp - float(other)
+            )
         return new_degree
-
-    def __rsub__(self, other):
-        return self.__sub__(other)
 
     def __mul__(self, other):
         return Degree(scale=self.scale, temp=self.temp * float(other))
