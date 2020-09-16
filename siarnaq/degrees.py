@@ -29,14 +29,74 @@ class Degree:
 
             >>> Degree('fa', 10) + 1
             Degree('fa', 11.0)
+            >>> r = Degree('fa', 10)
+            >>> r += 1
+            >>> r
+            Degree('fa', 11.0
+            >>> 1 + Degree('ke', 10)
+            Degree('ke', 11.0)
             >>> Degree('fa', 10) + Degree('fa', 10)
             Degree('fa', 20.0)
+            >>> Degree('ce', 0) + Degree('fa', 32)
+            Degree('ce', 0.0)
 
-        Substractions:
+        Substractions (not commutative operation):
+
+            >>> Degree('fa', 10) - 1
+            Degree('fa', 9.0)
+            >>> r = Degree('ke', 10)
+            >>> r -= 1
+            >>> r
+            Degree('ke', 9.0)
+            >>> Degree('ce', 0) - Degree('ke', 0)
+            Degree('ce', 273.15)
 
         Multiplications:
 
-        Divisions:
+            >>>Degree('ce', 10) * 2
+            Degree('ce', 20.0)
+            >>>3 * Degree('fa', 1)
+            Degree('fa', 3.0)
+
+        Divisions (not commutative operation):
+
+            >>>Degree('ke', 10) / 2
+            Degree('ce', 5.0)
+
+        Representations:
+
+            >>> str(Degree('fa', 1100.15))
+            '1100.15 °F'
+            >>> str(Degree('ke', 10.00))
+            '10.00 K'
+            >>> repr(Degree('ke', 100.15))
+            "Degree('ke', 100.15)"
+
+        Properties:
+
+            >>> r = Degree('ce', 0)
+            >>> r.celcius
+            0.0
+            >>> r.fahrenheit
+            32.00
+            >>> r = Degree('ce', 0)
+            >>> r.scale = 'fa'
+            >>> r.temp
+            32.0
+
+        Static methods:
+
+            Temperature coversions:
+
+                >>> Degree.conv_ce_to_fa(10)
+                50.0
+                >>> Degree.conv_ce_to_ke(0)
+                273.15
+                >>> Degree.conv_fa_to_ce(32)
+                0.0
+                >>> Degree.conv_fa_to_ke(32)
+                273.15
+
 
     """
     _scales = {
@@ -183,7 +243,7 @@ class Degree:
             return self.conv_ke_to_ce(self._temp)
 
     @property
-    def fahrnheit(self):
+    def fahrenheit(self):
         """Fahrenheit value.
 
         Returns:
