@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
         name="siarnaq",
-        version="0.1.2",
+        version="0.1.3",
         author="Thierry P.G. DECKER",
         author_email="mail@thierry-decker.com",
         description="A conversion library",
