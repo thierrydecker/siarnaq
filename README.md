@@ -23,6 +23,7 @@ The Degree class currently supports the following scales :
 - Celcius
 - Fahrenheit
 - Kelvin
+- Rankine
 
 ## Installation
 
