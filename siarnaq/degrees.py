@@ -106,6 +106,7 @@ class Degree:
         'ce',  # Celcius
         'fa',  # Fahrenheit
         'ke',  # Kelvin
+        'ra'  # Rankine
     }
 
     def __init__(self, scale='ce', temp=0.):
@@ -120,29 +121,39 @@ class Degree:
         self._temp = float(temp)
 
     def __add__(self, other):
+        new_scale = self.scale
+        new_temp = self.temp
         if isinstance(other, Degree):
-            other.scale = self._scale
-            new_degree = Degree(scale=self.scale, temp=self._temp + other.temp)
+            if self.scale == 'ce':
+                new_temp += other.celcius
+            elif self.scale == 'fa':
+                new_temp += other.fahrenheit
+            elif self.scale == 'ke':
+                new_temp += other.kelvin
+            elif self.scale == 'ra':
+                new_temp += other.rankine
         else:
-            new_degree = Degree(
-                    scale=self.scale,
-                    temp=self._temp + float(other)
-            )
-        return new_degree
+            new_temp += float(other)
+        return Degree(scale=new_scale, temp=new_temp)
 
     def __radd__(self, other):
         return self.__add__(other)
 
     def __sub__(self, other):
+        new_scale = self.scale
+        new_temp = self.temp
         if isinstance(other, Degree):
-            other.scale = self._scale
-            new_degree = Degree(temp=self._temp - other.temp)
+            if self.scale == 'ce':
+                new_temp -= other.celcius
+            elif self.scale == 'fa':
+                new_temp -= other.fahrenheit
+            elif self.scale == 'ke':
+                new_temp -= other.kelvin
+            elif self.scale == 'ra':
+                new_temp -= other.rankine
         else:
-            new_degree = Degree(
-                    scale=self.scale,
-                    temp=self._temp - float(other)
-            )
-        return new_degree
+            new_temp -= float(other)
+        return Degree(scale=new_scale, temp=new_temp)
 
     def __mul__(self, other):
         return Degree(scale=self.scale, temp=self.temp * float(other))
@@ -160,6 +171,8 @@ class Degree:
             return f'{self.temp} °F'
         if self.scale == 'ke':
             return f'{self.temp} K'
+        if self.scale == 'ra':
+            return f'{self.temp} °Ra'
 
     def __repr__(self):
         return f'Degree(\'{self.scale}\', {self.temp})'
@@ -195,18 +208,35 @@ class Degree:
             raise NameError(scale)
 
         if scale != self._scale:
+
             if self._scale == 'ce' and scale == 'fa':
                 self._temp = self.conv_ce_to_fa(temp=self._temp)
             if self._scale == 'ce' and scale == 'ke':
                 self._temp = self.conv_ce_to_ke(temp=self._temp)
+            if self._scale == 'ce' and scale == 'ra':
+                self._temp = self.conv_ce_to_ra(temp=self._temp)
+
             if self._scale == 'fa' and scale == 'ce':
                 self._temp = self.conv_fa_to_ce(temp=self._temp)
             if self._scale == 'fa' and scale == 'ke':
                 self._temp = self.conv_fa_to_ke(temp=self._temp)
+            if self._scale == 'fa' and scale == 'ra':
+                self._temp = self.conv_fa_to_ra(temp=self._temp)
+
             if self._scale == 'ke' and scale == 'ce':
                 self._temp = self.conv_ke_to_ce(temp=self._temp)
             if self._scale == 'ke' and scale == 'fa':
                 self._temp = self.conv_ke_to_fa(temp=self._temp)
+            if self._scale == 'ke' and scale == 'ra':
+                self._temp = self.conv_ke_to_ra(temp=self._temp)
+
+            if self._scale == 'ra' and scale == 'ce':
+                self._temp = self.conv_ra_to_ce(temp=self._temp)
+            if self._scale == 'ra' and scale == 'fa':
+                self._temp = self.conv_ra_to_fa(temp=self._temp)
+            if self._scale == 'ra' and scale == 'ke':
+                self._temp = self.conv_ra_to_ke(temp=self._temp)
+
             self._scale = scale
 
     @property
@@ -241,6 +271,8 @@ class Degree:
             return self.conv_fa_to_ce(self._temp)
         if self._scale == 'ke':
             return self.conv_ke_to_ce(self._temp)
+        if self._scale == 'ra':
+            return self.conv_ra_to_ce(self._temp)
 
     @property
     def fahrenheit(self):
@@ -255,19 +287,39 @@ class Degree:
             return self._temp
         if self._scale == 'ke':
             return self.conv_ke_to_fa(self._temp)
+        if self._scale == 'ra':
+            return self.conv_ra_to_fa(self._temp)
 
     @property
     def kelvin(self):
-        """Fahrenheit value.
+        """Kelvin value.
 
         Returns:
-            A float containing the Fahrenheit value.
+            A float containing the Kelvine value.
         """
         if self._scale == 'ce':
             return self.conv_ce_to_ke(self._temp)
         if self._scale == 'fa':
             return self.conv_fa_to_ke(self._temp)
         if self._scale == 'ke':
+            return self._temp
+        if self._scale == 'ra':
+            return self.conv_ra_to_ke(self._temp)
+
+    @property
+    def rankine(self):
+        """Fahrenheit value.
+
+        Returns:
+            A float containing the Fahrenheit value.
+        """
+        if self._scale == 'ce':
+            return self.conv_ce_to_ra(self._temp)
+        if self._scale == 'fa':
+            return self.conv_fa_to_ra(self._temp)
+        if self._scale == 'ke':
+            return self.conv_ke_to_ra(self.temp)
+        if self._scale == 'ra':
             return self._temp
 
     @staticmethod
@@ -295,6 +347,18 @@ class Degree:
         return temp + 273.15
 
     @staticmethod
+    def conv_ce_to_ra(temp):
+        """Convert Celcius value to Rankine.
+
+        Args:
+            temp: A float containing the Celcius value to convert.
+
+        Returns:
+            A float containing the Rankine value.
+        """
+        return temp * 1.8 + 32 + 459.67
+
+    @staticmethod
     def conv_fa_to_ce(temp):
         """Convert Fahrenheit value to Celcius.
 
@@ -311,7 +375,7 @@ class Degree:
         """Convert Fahrenheit value to Kelvin.
 
         Args:
-            temp: A float containing the Kelvin value.
+            temp: A float containing the Fahrenheit value.
 
         returns:
             A Float containing the Kelvin value.
@@ -319,11 +383,23 @@ class Degree:
         return ((temp + 459.67) * 5) / 9
 
     @staticmethod
+    def conv_fa_to_ra(temp):
+        """Convert Fahrenheit value to Rankine.
+
+        Args:
+            temp: A float containing the Fahrenheit value.
+
+        returns:
+            A Float containing the Rankine value.
+        """
+        return temp + 459.67
+
+    @staticmethod
     def conv_ke_to_ce(temp):
         """Convert Kelvin value to Celcius.
 
         Args:
-            temp: A float containing the Celcius value.
+            temp: A float containing the Kelvin value.
 
         returns:
             A Float containing the Celcius value.
@@ -335,9 +411,57 @@ class Degree:
         """Convert Kelvin value to Fahrenheit.
 
         Args:
-            temp: A float containing the Fahrenheit value.
+            temp: A float containing the Kelvin value.
 
         returns:
             A Float containing the Fahrenheit value.
         """
         return ((9 * temp) / 5) - 459.67
+
+    @staticmethod
+    def conv_ke_to_ra(temp):
+        """Convert Kelvin value to Fahrenheit.
+
+        Args:
+            temp: A float containing the Kelvin value.
+
+        returns:
+            A Float containing the Rankine value.
+        """
+        return temp * 1.8
+
+    @staticmethod
+    def conv_ra_to_ce(temp):
+        """Convert Rankine value to Celcius.
+
+        Args:
+            temp: A float containing the Rankine value.
+
+        returns:
+            A Float containing the Celcius value.
+        """
+        return (temp - 459.67 - 32) / 1.8
+
+    @staticmethod
+    def conv_ra_to_fa(temp):
+        """Convert Rankine value to Fahrenheit.
+
+        Args:
+            temp: A float containing the Rankine value.
+
+        returns:
+            A Float containing the Fahrenheit value.
+        """
+        return temp - 459.67
+
+    @staticmethod
+    def conv_ra_to_ke(temp):
+        """Convert Rankine value to Fahrenheit.
+
+        Args:
+            temp: A float containing the Rankine value.
+
+        returns:
+            A Float containing the Kelvin value.
+        """
+        return temp / 1.8
