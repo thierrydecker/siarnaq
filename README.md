@@ -25,6 +25,13 @@ The Degree class currently supports the following scales :
 - Kelvin
 - Rankine
 
+### Distances
+
+The Distance class currently supports the following scales :
+
+- Kilometer
+- Mile
+
 ## Installation
 
 The library is available on Pypi and can be installed via: 
