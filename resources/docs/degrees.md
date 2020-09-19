@@ -72,10 +72,6 @@
 - *Create a Degree object in the Celcius scale and a temperature of 10 degrees.*
 
 ```
->>> d = Degree(10)
-```
-or
-```
 >>> d = Degree(temp=10)
 ```
 
@@ -88,7 +84,7 @@ or
 - *Creates a Degree object in the Fahrenheit scale and a temperature of 32 degrees.*
 
 ```
->>> d = Degree(scale='fa', scale=32)
+>>> d = Degree(scale='fa', temp=32)
 ```
 
 ### Properties:

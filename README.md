@@ -50,6 +50,8 @@ or
 
 We try to maintain a high level of testing coverage...
 
-## Examples
+## Usage examples
 
 [Degrees examples](resources/docs/degrees.md)
+
+[Distances examples](resources/docs/distances.md)
