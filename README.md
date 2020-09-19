@@ -52,4 +52,4 @@ We try to maintain a high level of testing coverage...
 
 ## Examples
 
-[Desgrees examples](resources/docs/degrees.md)
+[Degrees examples](resources/docs/degrees.md)
