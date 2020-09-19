@@ -12,13 +12,13 @@
 
 ## The project
 
-Siarnaq aims to become a toolbox dedicated to units conversions.
+Siarnaq project aims to become a library dedicated to units conversions.
 
 ## Available conversions
 
 ### Degrees
 
-The Degree class currently supports the following scales :
+The *Degree* class currently supports the following scales :
 
 - Celcius
 - Fahrenheit
@@ -27,7 +27,7 @@ The Degree class currently supports the following scales :
 
 ### Distances
 
-The Distance class currently supports the following scales :
+The *Distance* class currently supports the following scales :
 
 - Kilometer
 - Mile
@@ -49,3 +49,9 @@ or
 ```python -m pytest tests/ -v```
 
 We try to maintain a high level of testing coverage...
+
+## Usage examples
+
+[Degrees examples](resources/docs/degrees.md)
+
+[Distances examples](resources/docs/distances.md)
