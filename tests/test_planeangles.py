@@ -110,7 +110,7 @@ def test_conv_ra_to_ma():
 
 
 def test_conv_ra_to_sa():
-    assert round(PlaneAngle.conv_ra_to_sa(1), 2) == 206, 265
+    assert round(PlaneAngle.conv_ra_to_sa(1), 2) == 206264.81
 
 
 def test_conv_sa_to_de():
