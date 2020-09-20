@@ -130,4 +130,4 @@ def test_conv_sa_to_ma():
 
 
 def test_conv_sa_to_ra():
-    assert round(PlaneAngle.conv_sa_to_ra(100, 000), 2) == 0.48
+    assert round(PlaneAngle.conv_sa_to_ra(100000), 2) == 0.48
