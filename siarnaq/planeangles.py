@@ -353,3 +353,15 @@ class PlaneAngle:
             A float containing the Gradian value.
         """
         return angle / 3240
+
+    @staticmethod
+    def conv_sa_to_mi(angle):
+        """Convert Second of arc value to Milliradian.
+
+        Args:
+            angle: A float containing the Second of arc value to convert.
+
+        Returns:
+            A float containing the Milliradian value.
+        """
+        return (angle * 1000 * math.pi) / (180 * 3600)
