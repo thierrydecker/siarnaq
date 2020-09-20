@@ -258,7 +258,6 @@ class PlaneAngle:
         """
         return angle * math.pi / (60 * 180)
 
-
     @staticmethod
     def conv_ma_to_sa(angle):
         """Convert Minute of arc value to Second of arc.
@@ -267,6 +266,30 @@ class PlaneAngle:
             angle: A float containing the Minute of arc value to convert.
 
         Returns:
-            A float containing the Second of value.
+            A float containing the Second of arc value.
         """
         return angle * 60
+
+    @staticmethod
+    def conv_ra_to_de(angle):
+        """Convert Radian value to Degree.
+
+        Args:
+            angle: A float containing the Radian value to convert.
+
+        Returns:
+            A float containing the Degree of value.
+        """
+        return angle * 180 / math.pi
+
+    @staticmethod
+    def conv_ra_to_gr(angle):
+        """Convert Radian value to Gradian.
+
+        Args:
+            angle: A float containing the Radian value to convert.
+
+        Returns:
+            A float containing the Gradian of value.
+        """
+        return angle * 200 / math.pi
