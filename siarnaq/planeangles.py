@@ -278,7 +278,7 @@ class PlaneAngle:
             angle: A float containing the Radian value to convert.
 
         Returns:
-            A float containing the Degree of value.
+            A float containing the Degreevalue.
         """
         return angle * 180 / math.pi
 
@@ -290,10 +290,9 @@ class PlaneAngle:
             angle: A float containing the Radian value to convert.
 
         Returns:
-            A float containing the Gradian of value.
+            A float containing the Gradian value.
         """
         return angle * 200 / math.pi
-
 
     @staticmethod
     def conv_ra_to_mi(angle):
@@ -303,6 +302,18 @@ class PlaneAngle:
             angle: A float containing the Radian value to convert.
 
         Returns:
-            A float containing the Millirradian of value.
+            A float containing the Milliradian value.
         """
         return angle * 1000
+
+    @staticmethod
+    def conv_ra_to_ma(angle):
+        """Convert Radian value to Miinute of arc.
+
+        Args:
+            angle: A float containing the Radian value to convert.
+
+        Returns:
+            A float containing the Minute of arc value.
+        """
+        return angle * 60 * 180 / math.pi
