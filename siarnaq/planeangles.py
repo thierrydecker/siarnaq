@@ -293,3 +293,16 @@ class PlaneAngle:
             A float containing the Gradian of value.
         """
         return angle * 200 / math.pi
+
+
+    @staticmethod
+    def conv_ra_to_mi(angle):
+        """Convert Radian value to Millirradian.
+
+        Args:
+            angle: A float containing the Radian value to convert.
+
+        Returns:
+            A float containing the Millirradian of value.
+        """
+        return angle * 1000
