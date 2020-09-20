@@ -221,3 +221,15 @@ class PlaneAngle:
             A float containing the Degree value.
         """
         return angle / 60
+
+    @staticmethod
+    def conv_ma_to_gr(angle):
+        """Convert Minute of arc value to Degree.
+
+        Args:
+            angle: A float containing the Minute of arc value to convert.
+
+        Returns:
+            A float containing the Gradian value.
+        """
+        return angle / 54

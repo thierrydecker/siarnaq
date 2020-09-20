@@ -75,3 +75,7 @@ def test_conv_mi_to_sa():
 
 def test_conv_ma_to_de():
     assert round(PlaneAngle.conv_ma_to_de(1), 2) == 0.02
+
+
+def test_conv_ma_to_gr():
+    assert round(PlaneAngle.conv_ma_to_gr(1), 2) == 0.02
