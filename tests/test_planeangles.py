@@ -118,7 +118,7 @@ def test_conv_sa_to_de():
 
 
 def test_conv_sa_to_gr():
-    assert round(PlaneAngle.conv_sa_to_gr(1000), 2) == 0.30
+    assert round(PlaneAngle.conv_sa_to_gr(1000), 2) == 0.31
 
 
 def test_conv_sa_to_mi():

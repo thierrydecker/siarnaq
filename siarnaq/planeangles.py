@@ -341,3 +341,15 @@ class PlaneAngle:
             A float containing the Degree value.
         """
         return angle / 3600
+
+    @staticmethod
+    def conv_sa_to_gr(angle):
+        """Convert Second of arc value to Gradian.
+
+        Args:
+            angle: A float containing the Second of arc value to convert.
+
+        Returns:
+            A float containing the Gradian value.
+        """
+        return angle / 3240
