@@ -329,3 +329,15 @@ class PlaneAngle:
             A float containing the Second of arc value.
         """
         return (angle * 3600 * 180) / math.pi
+
+    @staticmethod
+    def conv_sa_to_de(angle):
+        """Convert Second of arc value to Degree.
+
+        Args:
+            angle: A float containing the Second of arc value to convert.
+
+        Returns:
+            A float containing the Degree value.
+        """
+        return angle / 3600
