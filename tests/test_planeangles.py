@@ -5,12 +5,20 @@ All Rights Reserved.
 Released under the MIT license
 
 """
+import pytest
 
 from siarnaq.planeangles import PlaneAngle
 
 
 def test_property_getter_scales():
     assert PlaneAngle().scales == {'de', 'gr', 'mi', 'ma', 'ra', 'sa'}
+
+
+def test_class_init():
+    with pytest.raises(Exception):
+        PlaneAngle(scale='Dummy')
+        PlaneAngle(angle='Dummy')
+        PlaneAngle(scale='Dummy', angle='Dummy')
 
 
 def test_property_getter_scale():
