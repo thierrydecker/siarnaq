@@ -30,7 +30,7 @@ class PlaneAngle:
         if scale not in self._scales:
             raise NameError(scale)
         self._scale = scale
-        self._dist = float(angle)
+        self._angle = float(angle)
 
     @property
     def scales(self):
@@ -57,27 +57,47 @@ class PlaneAngle:
         Returns:
             A Float containing an angle included in the object's scale.
         """
-        return self._dist
+        return self._angle
 
     @property
     def degree(self):
         """Degree value.
 
         Returns:
-            A float containg the Kilometer value.
+            A float containg the Degree value.
         """
         if self._scale == 'de':
-            return self._dist
+            return self._angle
         if self._scale == 'gr':
-            return self.conv_gr_to_de(self._dist)
+            return self.conv_gr_to_de(self._angle)
         if self._scale == 'mi':
-            return self.conv_mi_to_de(self._dist)
+            return self.conv_mi_to_de(self._angle)
         if self._scale == 'ma':
-            return self.conv_ma_to_de(self._dist)
+            return self.conv_ma_to_de(self._angle)
         if self._scale == 'ra':
-            return self.conv_ra_to_de(self._dist)
+            return self.conv_ra_to_de(self._angle)
         if self._scale == 'sa':
-            return self.conv_sa_to_de(self._dist)
+            return self.conv_sa_to_de(self._angle)
+
+    @property
+    def gradian(self):
+        """Gradian value.
+
+        Returns:
+            A float containg the Gradian value.
+        """
+        if self._scale == 'de':
+            return self.conv_de_to_gr(self._angle)
+        if self._scale == 'gr':
+            return self._angle
+        if self._scale == 'mi':
+            return self.conv_mi_to_gr(self._angle)
+        if self._scale == 'ma':
+            return self.conv_ma_to_gr(self._angle)
+        if self._scale == 'ra':
+            return self.conv_ra_to_gr(self._angle)
+        if self._scale == 'sa':
+            return self.conv_sa_to_gr(self._angle)
 
     @staticmethod
     def conv_de_to_gr(angle):
