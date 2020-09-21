@@ -139,6 +139,26 @@ class PlaneAngle:
         if self._scale == 'sa':
             return self.conv_sa_to_ma(self._angle)
 
+    @property
+    def radian(self):
+        """Radian value.
+
+        Returns:
+            A float containg the Radian value.
+        """
+        if self._scale == 'de':
+            return self.conv_de_to_ra(self._angle)
+        if self._scale == 'gr':
+            return self.conv_gr_to_ra(self._angle)
+        if self._scale == 'mi':
+            return self.conv_mi_to_ra(self._angle)
+        if self._scale == 'ma':
+            return self.conv_ma_to_ra(self._angle)
+        if self._scale == 'ra':
+            return self._angle
+        if self._scale == 'sa':
+            return self.conv_sa_to_ra(self._angle)
+
     @staticmethod
     def conv_de_to_gr(angle):
         """Convert Degree value to Gradiant.
