@@ -50,6 +50,15 @@ class PlaneAngle:
         """
         return self._scale
 
+    @property
+    def angle(self):
+        """Angle of the object.
+
+        Returns:
+            A Float containing an angle included in the object's scale.
+        """
+        return self._dist
+
     @staticmethod
     def conv_de_to_gr(angle):
         """Convert Degree value to Gradiant.

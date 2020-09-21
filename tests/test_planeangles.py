@@ -30,6 +30,15 @@ def test_property_getter_scale():
     assert PlaneAngle(scale='sa').scale == 'sa'
 
 
+def test_property_getter_angle():
+    assert PlaneAngle(scale='de', angle=0).angle == 0
+    assert PlaneAngle(scale='gr', angle=1).angle == 1
+    assert PlaneAngle(scale='mi', angle=1.5).angle == 1.5
+    assert PlaneAngle(scale='ma', angle=2).angle == 2
+    assert PlaneAngle(scale='ra', angle=2.5).angle == 2.5
+    assert PlaneAngle(scale='sa', angle=3).angle == 3
+
+
 def test_conv_de_to_gr():
     assert round(PlaneAngle.conv_de_to_gr(1), 2) == 1.11
 

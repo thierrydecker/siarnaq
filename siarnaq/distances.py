@@ -105,9 +105,9 @@ class Distance:
         if scale != self._scale:
 
             if self._scale == 'km' and scale == 'mi':
-                self.dist = self.conv_km_to_mi(dist=self.dist)
+                self._dist = self.conv_km_to_mi(dist=self.dist)
             if self._scale == 'mi' and scale == 'km':
-                self.dist = self.conv_mi_to_km(dist=self.dist)
+                self._dist = self.conv_mi_to_km(dist=self.dist)
 
             self._scale = scale
 
