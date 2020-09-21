@@ -159,6 +159,26 @@ class PlaneAngle:
         if self._scale == 'sa':
             return self.conv_sa_to_ra(self._angle)
 
+    @property
+    def second_of_arc(self):
+        """Second of arc value.
+
+        Returns:
+            A float containg the Secnd of arc value.
+        """
+        if self._scale == 'de':
+            return self.conv_de_to_sa(self._angle)
+        if self._scale == 'gr':
+            return self.conv_gr_to_sa(self._angle)
+        if self._scale == 'mi':
+            return self.conv_mi_to_sa(self._angle)
+        if self._scale == 'ma':
+            return self.conv_ma_to_sa(self._angle)
+        if self._scale == 'ra':
+            return self.conv_ra_to_sa(self._angle)
+        if self._scale == 'sa':
+            return self._angle
+
     @staticmethod
     def conv_de_to_gr(angle):
         """Convert Degree value to Gradiant.
