@@ -59,6 +59,26 @@ class PlaneAngle:
         """
         return self._dist
 
+    @property
+    def degree(self):
+        """Degree value.
+
+        Returns:
+            A float containg the Kilometer value.
+        """
+        if self._scale == 'de':
+            return self._dist
+        if self._scale == 'gr':
+            return self.conv_gr_to_de(self._dist)
+        if self._scale == 'mi':
+            return self.conv_mi_to_de(self._dist)
+        if self._scale == 'ma':
+            return self.conv_ma_to_de(self._dist)
+        if self._scale == 'ra':
+            return self.conv_ra_to_de(self._dist)
+        if self._scale == 'sa':
+            return self.conv_sa_to_de(self._dist)
+
     @staticmethod
     def conv_de_to_gr(angle):
         """Convert Degree value to Gradiant.
