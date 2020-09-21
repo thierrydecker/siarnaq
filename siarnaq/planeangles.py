@@ -119,6 +119,26 @@ class PlaneAngle:
         if self._scale == 'sa':
             return self.conv_sa_to_mi(self._angle)
 
+    @property
+    def minute_of_arc(self):
+        """Minute of arc value.
+
+        Returns:
+            A float containg the Minute of arc value.
+        """
+        if self._scale == 'de':
+            return self.conv_de_to_ma(self._angle)
+        if self._scale == 'gr':
+            return self.conv_gr_to_ma(self._angle)
+        if self._scale == 'mi':
+            return self.conv_mi_to_ma(self._angle)
+        if self._scale == 'ma':
+            return self._angle
+        if self._scale == 'ra':
+            return self.conv_ra_to_ma(self._angle)
+        if self._scale == 'sa':
+            return self.conv_sa_to_ma(self._angle)
+
     @staticmethod
     def conv_de_to_gr(angle):
         """Convert Degree value to Gradiant.

@@ -66,6 +66,15 @@ def test_property_getter_milliradian():
     assert round(PlaneAngle(scale='sa', angle=1000).milliradian, 2) == 4.85
 
 
+def test_property_getter_minute_of_arc():
+    assert round(PlaneAngle(scale='de', angle=10).minute_of_arc, 2) == 600
+    assert round(PlaneAngle(scale='gr', angle=10).minute_of_arc, 2) == 540
+    assert round(PlaneAngle(scale='mi', angle=10).minute_of_arc, 2) == 34.38
+    assert round(PlaneAngle(scale='ma', angle=10).minute_of_arc, 2) == 10
+    assert round(PlaneAngle(scale='ra', angle=10).minute_of_arc, 2) == 34377.47
+    assert round(PlaneAngle(scale='sa', angle=1000).minute_of_arc, 2) == 16.67
+
+
 def test_conv_de_to_gr():
     assert round(PlaneAngle.conv_de_to_gr(1), 2) == 1.11
 
