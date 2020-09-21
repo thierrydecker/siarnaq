@@ -21,6 +21,17 @@ class PlaneAngle:
         'sa',  # Second of arc
     }
 
+    def __init__(self, scale='de', angle=0.):
+        """Initialize new PlaneAnge instances.
+
+        Raises:
+            NameError if the given scale is not supported.
+        """
+        if scale not in self._scales:
+            raise NameError(scale)
+        self._scale = scale
+        self._dist = float(angle)
+
     @property
     def scales(self):
         """Supported plane angles scales.
@@ -29,6 +40,15 @@ class PlaneAngle:
             A set of the managed scales.
         """
         return self._scales
+
+    @property
+    def scale(self):
+        """Scale of the object.
+
+        Returns:
+            A string containing a scale included in the supported scales set.
+        """
+        return self._scale
 
     @staticmethod
     def conv_de_to_gr(angle):
