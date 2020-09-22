@@ -99,7 +99,7 @@ def test_str():
     assert str(PlaneAngle(scale='mi', angle=10)) == '10.0 mrad'
     assert str(PlaneAngle(scale='ma', angle=10)) == '10.0 \''
     assert str(PlaneAngle(scale='ra', angle=10)) == '10.0 rad'
-    assert str(PlaneAngle(scale='sa', angle=10)) == '10.0 "'
+    assert str(PlaneAngle(scale='sa', angle=10)) == '10.0 \'\''
 
 
 def test_repr():
@@ -109,6 +109,169 @@ def test_repr():
     assert repr(PlaneAngle(scale='ma', angle=10)) == "PlaneAngle('ma', 10.0)"
     assert repr(PlaneAngle(scale='ra', angle=10)) == "PlaneAngle('ra', 10.0)"
     assert repr(PlaneAngle(scale='sa', angle=10)) == "PlaneAngle('sa', 10.0)"
+
+
+def test_add():
+    r = PlaneAngle(angle=1)
+    r = r + 1
+    assert r.angle == 2
+    r = PlaneAngle(angle=1)
+    r += 1
+    assert r.angle == 2
+    r = PlaneAngle(angle=1)
+    r = 1 + r
+    assert r.angle == 2
+
+    rde = PlaneAngle(scale='de', angle=100)
+    rgr = PlaneAngle(scale='gr', angle=100)
+    rmi = PlaneAngle(scale='mi', angle=100)
+    rma = PlaneAngle(scale='ma', angle=100)
+    rra = PlaneAngle(scale='ra', angle=100)
+    rsa = PlaneAngle(scale='sa', angle=100)
+
+    r = rde + rde
+    assert r.scale == 'de'
+    assert r.angle == 200
+    assert r.degree == 200
+    assert round(r.gradian, 2) == 222.22
+    assert round(r.milliradian, 2) == 3490.66
+    assert round(r.minute_of_arc, 2) == 12000
+    assert round(r.radian, 2) == 3.49
+    assert round(r.second_of_arc, 2) == 720000
+
+    r = rde + rgr
+    assert r.scale == 'de'
+    assert r.angle == 190
+    assert r.degree == 190
+    assert round(r.gradian, 2) == 211.11
+    assert round(r.milliradian, 2) == 3316.13
+    assert round(r.minute_of_arc, 2) == 11400
+    assert round(r.radian, 2) == 3.32
+    assert round(r.second_of_arc, 2) == 684000
+
+    # TODO Add missing tests
+
+    r = rde + rmi
+    assert r.scale == 'de'
+    assert r.angle == 100 + rmi.degree
+    assert r.degree == rde.degree + rmi.degree
+    assert r.gradian == rde.gradian + rmi.gradian
+    assert r.milliradian == rde.milliradian + rmi.milliradian
+    assert round(r.minute_of_arc, 2) == \
+           round(rde.minute_of_arc + rmi.minute_of_arc, 2)
+    assert round(r.radian, 2) == \
+           round(rde.radian + rmi.radian, 2)
+    assert round(r.second_of_arc, 2) == \
+           round(rde.second_of_arc + rmi.second_of_arc, 2)
+
+    r = rde + rma
+    assert r.scale == 'de'
+
+    r = rde + rra
+    assert r.scale == 'de'
+
+    r = rde + rsa
+    assert r.scale == 'de'
+
+    r = rgr + rde
+    assert r.scale == 'gr'
+
+    r = rgr + rgr
+    assert r.scale == 'gr'
+    assert r.angle == 200
+    assert r.gradian == 200
+
+    r = rgr + rmi
+    assert r.scale == 'gr'
+
+    r = rgr + rma
+    assert r.scale == 'gr'
+
+    r = rgr + rra
+    assert r.scale == 'gr'
+
+    r = rgr + rsa
+    assert r.scale == 'gr'
+
+    r = rmi + rde
+    assert r.scale == 'mi'
+
+    r = rmi + rgr
+    assert r.scale == 'mi'
+
+    r = rmi + rmi
+    assert r.scale == 'mi'
+    assert r.angle == 200
+    assert r.milliradian == 200
+
+    r = rmi + rma
+    assert r.scale == 'mi'
+
+    r = rmi + rra
+    assert r.scale == 'mi'
+
+    r = rmi + rsa
+    assert r.scale == 'mi'
+
+    r = rma + rde
+    assert r.scale == 'ma'
+
+    r = rma + rgr
+    assert r.scale == 'ma'
+
+    r = rma + rmi
+    assert r.scale == 'ma'
+
+    r = rma + rma
+    assert r.scale == 'ma'
+    assert r.angle == 200
+    assert r.minute_of_arc == 200
+
+    r = rma + rra
+    assert r.scale == 'ma'
+
+    r = rma + rsa
+    assert r.scale == 'ma'
+
+    r = rra + rde
+    assert r.scale == 'ra'
+
+    r = rra + rgr
+    assert r.scale == 'ra'
+
+    r = rra + rmi
+    assert r.scale == 'ra'
+
+    r = rra + rma
+    assert r.scale == 'ra'
+
+    r = rra + rra
+    assert r.scale == 'ra'
+    assert r.angle == 200
+    assert r.radian == 200
+
+    r = rra + rsa
+    assert r.scale == 'ra'
+
+    r = rsa + rde
+    assert r.scale == 'sa'
+
+    r = rsa + rgr
+    assert r.scale == 'sa'
+
+    r = rsa + rmi
+    assert r.scale == 'sa'
+
+    r = rsa + rma
+    assert r.scale == 'sa'
+
+    r = rsa + rra
+    assert r.scale == 'sa'
+
+    r = rsa + rsa
+    assert r.scale == 'sa'
+    assert r.angle == 200
+    assert r.second_of_arc == 200
 
 
 def test_conv_de_to_gr():
