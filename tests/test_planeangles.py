@@ -93,6 +93,15 @@ def test_property_getter_second_of_arc():
     assert round(PlaneAngle(scale='sa', angle=10).second_of_arc, 2) == 10
 
 
+def test_str():
+    assert str(PlaneAngle(scale='de', angle=10)) == '10.0 °'
+    assert str(PlaneAngle(scale='gr', angle=10)) == '10.0 g'
+    assert str(PlaneAngle(scale='mi', angle=10)) == '10.0 mrad'
+    assert str(PlaneAngle(scale='ma', angle=10)) == '10.0 \''
+    assert str(PlaneAngle(scale='ra', angle=10)) == '10.0 rad'
+    assert str(PlaneAngle(scale='sa', angle=10)) == '10.0 "'
+
+
 def test_conv_de_to_gr():
     assert round(PlaneAngle.conv_de_to_gr(1), 2) == 1.11
 

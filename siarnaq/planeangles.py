@@ -32,6 +32,23 @@ class PlaneAngle:
         self._scale = scale
         self._angle = float(angle)
 
+    def __str__(self):
+        if self.scale == 'de':
+            return f'{self.angle} °'
+        if self.scale == 'gr':
+            return f'{self.angle} g'
+        if self.scale == 'mi':
+            return f'{self.angle} mrad'
+        if self.scale == 'ma':
+            return f'{self.angle} \''
+        if self.scale == 'ra':
+            return f'{self.angle} rad'
+        if self.scale == 'sa':
+            return f'{self.angle} "'
+
+    def __repr__(self):
+        return f'Distance(\'{self.scale}\', {self.dist})'
+
     @property
     def scales(self):
         """Supported plane angles scales.
