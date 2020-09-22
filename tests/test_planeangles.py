@@ -153,10 +153,14 @@ def test_add():
 
     r = rde + rmi
     assert r.scale == 'de'
-    assert r.angle == 100 + rmi.degree
-    assert r.degree == rde.degree + rmi.degree
-    assert r.gradian == rde.gradian + rmi.gradian
-    assert r.milliradian == rde.milliradian + rmi.milliradian
+    assert round(r.angle, 2) == \
+           round(rde.degree + rmi.degree, 2)
+    assert round(r.degree, 2) == \
+           round(rde.degree + rmi.degree, 2)
+    assert round(r.gradian, 2) == \
+           round(rde.gradian + rmi.gradian, 2)
+    assert round(r.milliradian, 2) == \
+           round(rde.milliradian + rmi.milliradian, 2)
     assert round(r.minute_of_arc, 2) == \
            round(rde.minute_of_arc + rmi.minute_of_arc, 2)
     assert round(r.radian, 2) == \
@@ -166,6 +170,20 @@ def test_add():
 
     r = rde + rma
     assert r.scale == 'de'
+    assert round(r.angle, 2) == \
+           round(rde.degree + rma.degree, 2)
+    assert round(r.degree, 2) == \
+           round(rde.degree + rma.degree, 2)
+    assert round(r.gradian, 2) == \
+           round(rde.gradian + rma.gradian, 2)
+    assert round(r.milliradian, 2) == \
+           round(rde.milliradian + rma.milliradian, 2)
+    assert round(r.minute_of_arc, 2) == \
+           round(rde.minute_of_arc + rma.minute_of_arc, 2)
+    assert round(r.radian, 2) == \
+           round(rde.radian + rma.radian, 2)
+    assert round(r.second_of_arc, 2) == \
+           round(rde.second_of_arc + rma.second_of_arc, 2)
 
     r = rde + rra
     assert r.scale == 'de'
