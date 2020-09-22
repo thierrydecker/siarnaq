@@ -47,7 +47,7 @@ class PlaneAngle:
             return f'{self.angle} "'
 
     def __repr__(self):
-        return f'Distance(\'{self.scale}\', {self.dist})'
+        return f'PlaneAngle(\'{self.scale}\', {self.angle})'
 
     @property
     def scales(self):

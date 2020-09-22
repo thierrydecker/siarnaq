@@ -102,6 +102,15 @@ def test_str():
     assert str(PlaneAngle(scale='sa', angle=10)) == '10.0 "'
 
 
+def test_repr():
+    assert repr(PlaneAngle(scale='de', angle=10)) == "PlaneAngle('de', 10.0)"
+    assert repr(PlaneAngle(scale='gr', angle=10)) == "PlaneAngle('gr', 10.0)"
+    assert repr(PlaneAngle(scale='mi', angle=10)) == "PlaneAngle('mi', 10.0)"
+    assert repr(PlaneAngle(scale='ma', angle=10)) == "PlaneAngle('ma', 10.0)"
+    assert repr(PlaneAngle(scale='ra', angle=10)) == "PlaneAngle('ra', 10.0)"
+    assert repr(PlaneAngle(scale='sa', angle=10)) == "PlaneAngle('sa', 10.0)"
+
+
 def test_conv_de_to_gr():
     assert round(PlaneAngle.conv_de_to_gr(1), 2) == 1.11
 
