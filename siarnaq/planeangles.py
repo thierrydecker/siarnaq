@@ -32,6 +32,29 @@ class PlaneAngle:
         self._scale = scale
         self._angle = float(angle)
 
+    def __add__(self, other):
+        new_scale = self.scale
+        new_angle = self.angle
+        if isinstance(other, PlaneAngle):
+            if self.scale == 'de':
+                new_angle += other.degree
+            elif self.scale == 'gr':
+                new_angle += other.gradian
+            elif self.scale == 'mi':
+                new_angle += other.milliradian
+            elif self.scale == 'ma':
+                new_angle += other.minute_of_arc
+            elif self.scale == 'ra':
+                new_angle += other.radian
+            elif self.scale == 'sa':
+                new_angle += other.second_of_arc
+        else:
+            new_angle += float(other)
+        return PlaneAngle(scale=new_scale, angle=new_angle)
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
     def __str__(self):
         if self.scale == 'de':
             return f'{self.angle} °'
@@ -44,7 +67,7 @@ class PlaneAngle:
         if self.scale == 'ra':
             return f'{self.angle} rad'
         if self.scale == 'sa':
-            return f'{self.angle} "'
+            return f'{self.angle} \'\''
 
     def __repr__(self):
         return f'PlaneAngle(\'{self.scale}\', {self.angle})'
