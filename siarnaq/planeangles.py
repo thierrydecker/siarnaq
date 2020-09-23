@@ -63,6 +63,14 @@ class PlaneAngle:
                 new_angle -= other.degree
             elif self.scale == 'gr':
                 new_angle -= other.gradian
+            elif self.scale == 'mi':
+                new_angle -= other.milliradian
+            elif self.scale == 'ma':
+                new_angle -= other.minute_of_arc
+            elif self.scale == 'ra':
+                new_angle -= other.radian
+            elif self.scale == 'sa':
+                new_angle -= other.second_of_arc
         else:
             new_angle -= float(other)
         return PlaneAngle(scale=new_scale, angle=new_angle)
