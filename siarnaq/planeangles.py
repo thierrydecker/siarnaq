@@ -55,6 +55,27 @@ class PlaneAngle:
     def __radd__(self, other):
         return self.__add__(other)
 
+    def __sub__(self, other):
+        new_scale = self.scale
+        new_angle = self._angle
+        if isinstance(other, PlaneAngle):
+            if self.scale == 'de':
+                new_angle -= other.degree
+            elif self.scale == 'gr':
+                new_angle -= other.gradian
+        else:
+            new_angle -= float(other)
+        return PlaneAngle(scale=new_scale, angle=new_angle)
+
+    def __mul__(self, other):
+        return PlaneAngle(scale=self.scale, angle=self.angle * float(other))
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __truediv__(self, other):
+        return PlaneAngle(scale=self.scale, angle=self.angle / float(other))
+
     def __str__(self):
         if self.scale == 'de':
             return f'{self.angle} °'
