@@ -310,6 +310,55 @@ def test_add():
     assert r.second_of_arc == 0
 
 
+def test_sub():
+    rde = PlaneAngle(scale='de', angle=0)
+    rgr = PlaneAngle(scale='gr', angle=0)
+    rmi = PlaneAngle(scale='mi', angle=0)
+    rma = PlaneAngle(scale='ma', angle=0)
+    rra = PlaneAngle(scale='ra', angle=0)
+    rsa = PlaneAngle(scale='sa', angle=0)
+
+    r = rde - 1
+    assert r.scale == 'de'
+    assert r.angle == -1
+
+    r = rde - rde
+    assert r.scale == 'de'
+    assert r.angle == 0
+
+    r = rde - rgr
+    assert r.scale == 'de'
+    assert r.angle == 0
+
+    r = rde - rmi
+    assert r.scale == 'de'
+    assert r.angle == 0
+
+    r = rde - rma
+    assert r.scale == 'de'
+    assert r.angle == 0
+
+    r = rde - rra
+    assert r.scale == 'de'
+    assert r.angle == 0
+
+    r = rde - rsa
+    assert r.scale == 'de'
+    assert r.angle == 0
+
+
+def test_mul():
+    r = PlaneAngle(scale='de', angle=10) * 2
+    assert r.scale == 'de'
+    assert r.angle == 20
+
+
+def test_div():
+    r = PlaneAngle(scale='gr', angle=10) / 2
+    assert r.scale == 'gr'
+    assert r.angle == 5
+
+
 def test_conv_de_to_gr():
     assert round(PlaneAngle.conv_de_to_gr(1), 2) == 1.11
 
